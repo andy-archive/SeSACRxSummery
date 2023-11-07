@@ -17,19 +17,21 @@ final class BoxOfficeViewController: UIViewController {
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout() )
     private let searchBar = UISearchBar()
     
-    private let recent = Observable.just(["Test 4", "Test 5", "Test 6"])
-    
     private let disposeBag = DisposeBag()
     
-    /// Relay
+    // Subject
+    private let items = PublishSubject<[DailyBoxOfficeList]>() // 배열의 기본 형태
+    
+//    // Relay
     // completed, .error를 발생하지 않고 Dispose되기 전까지 계속 작동하기 때문에 UI Event에서 사용하기 적절함
     private let recent = BehaviorRelay(value: ["Test 4", "Test 5", "Test 6"])
     
-    /// Subject
+//    // Subject
     //BehaviorSubject(value: ["Test 4", "Test 5", "Test 6"]) // Subject를 통한 옵저버블의 이벤트 전달
     
-    /// Observable
-    //Observable.just(["Test 4", "Test 5", "Test 6"])
+//    // Observable
+//    private let items = Observable.just(["Test 1", "Test 2", "Test 3"])
+//    Observable.just(["Test 4", "Test 5", "Test 6"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,9 +62,14 @@ final class BoxOfficeViewController: UIViewController {
             .rx
             .searchButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribe(with: self) { owner, _ in
-                print("searchButtonClicked")
-            }
+            .flatMap { BoxOfficeNetwork.fetchBoxOfficeData(date: "20231030") } // 검색 이후 네트워크 처리
+            .subscribe(with: self, onNext: { owner, movie in
+                print(movie)
+                
+                // Movie 구조체의 프로퍼티 접근 - 타입이 맞는 것을 가져 오기
+                let data = movie.boxOfficeResult.dailyBoxOfficeList
+                owner.items.onNext(data)
+            })
             .disposed(by: disposeBag)
         
 // 값 가져 오기 또는 인덱스 가져 오기

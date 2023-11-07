@@ -12,11 +12,12 @@ import RxCocoa
 
 class BoxOfficeNetwork {
     
+    // 반환 타입이 Observable의 Movie
     static func fetchBoxOfficeData(date: String) -> Observable<Movie> {
         
         return Observable<Movie>.create { observer in
             
-            guard let url = URL(string: "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=f5eef3421c602c6cb7ea224104795888&targetDt=\(date)") else {
+            guard let url = URL(string: "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(APIKey.kobis)&targetDt=\(date)") else {
                 observer.onError(APIError.invalidURL)
                 return Disposables.create()
             }
