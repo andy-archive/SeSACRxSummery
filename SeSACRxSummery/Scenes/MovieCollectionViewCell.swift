@@ -9,6 +9,8 @@ import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
     
+    static let identifier = NSStringFromClass(MovieCollectionViewCell.self)
+    
     let label = UILabel()
     
     override init(frame: CGRect) {
