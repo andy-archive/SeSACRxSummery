@@ -15,7 +15,11 @@ final class BoxOfficeViewController: UIViewController {
     
     private let tableView = UITableView()
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout() )
-    private let searchBar = UISearchBar()
+    private let searchBar = {
+        let bar =  UISearchBar()
+        bar.placeholder = "검색어를 입력하세요 yyyyMMdd"
+        return bar
+    }()
     
     private let disposeBag = DisposeBag()
     
@@ -127,14 +131,14 @@ final class BoxOfficeViewController: UIViewController {
         navigationItem.titleView = searchBar
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MovieCell")
-        tableView.backgroundColor = .green
+        tableView.backgroundColor = .systemBackground
         tableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = .secondarySystemGroupedBackground
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()

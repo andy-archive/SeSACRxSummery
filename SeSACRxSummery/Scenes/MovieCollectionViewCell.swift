@@ -18,9 +18,14 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         layer.cornerRadius = 8
         layer.borderWidth = 1
-        layer.borderColor = UIColor.black.cgColor
-        contentView.addSubview(label)
+        layer.borderColor = UIColor.label.cgColor
+        
+        contentView.backgroundColor = .systemGroupedBackground
+        
         label.textAlignment = .center
+        
+        contentView.addSubview(label)
+        
         label.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
