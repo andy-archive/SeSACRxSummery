@@ -24,7 +24,7 @@ final class BoxOfficeViewController: UIViewController {
     
 //    // Relay
     // completed, .error를 발생하지 않고 Dispose되기 전까지 계속 작동하기 때문에 UI Event에서 사용하기 적절함
-    private let recent = BehaviorRelay(value: ["Test 4", "Test 5", "Test 6"])
+    private let recent = BehaviorRelay(value: [String]())
     
 //    // Subject
     //BehaviorSubject(value: ["Test 4", "Test 5", "Test 6"]) // Subject를 통한 옵저버블의 이벤트 전달
@@ -42,30 +42,34 @@ final class BoxOfficeViewController: UIViewController {
     
     private func bind() {
         
-        // UITableView
+        // 📌 UITableView
         items
             .bind(to: tableView.rx.items(cellIdentifier: "MovieCell", cellType: UITableViewCell.self)) { (row, element, cell) in
-                cell.textLabel?.text = "\(element) @ row \(row)"
+                cell.textLabel?.text = "\(element.movieNm) | \(element.openDt)"
             }
             .disposed(by: disposeBag)
         
-        // UICollectionView
+        // 📌 UICollectionView
         recent
             .bind(to: collectionView.rx.items(cellIdentifier: MovieCollectionViewCell.identifier, cellType: MovieCollectionViewCell.self)) {
                 (row, element, cell) in
-                cell.label.text = "\(element) @ row \(row)"
+                cell.label.text = "\(element)"
             }
             .disposed(by: disposeBag)
         
-        // UISearchBar
+        // 📌 UISearchBar
         searchBar
             .rx
             .searchButtonClicked
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .flatMap { BoxOfficeNetwork.fetchBoxOfficeData(date: "20231030") } // 검색 이후 네트워크 처리
+            .withLatestFrom(searchBar.rx.text.orEmpty, resultSelector: { _, query in
+                guard query.count == 8, let _ = Int(query) else { return  "20231106" }
+                return query // String을 반환 -> ControlProperty<String>.Element
+            })
+            .flatMap { query in
+                BoxOfficeNetwork.fetchBoxOfficeData(date: query)
+            } // query가 명확하기에 $0 사용 // 검색 이후 네트워크 처리
             .subscribe(with: self, onNext: { owner, movie in
-                print(movie)
-                
                 // Movie 구조체의 프로퍼티 접근 - 타입이 맞는 것을 가져 오기
                 let data = movie.boxOfficeResult.dailyBoxOfficeList
                 owner.items.onNext(data)
@@ -73,7 +77,7 @@ final class BoxOfficeViewController: UIViewController {
             .disposed(by: disposeBag)
         
 // 값 가져 오기 또는 인덱스 가져 오기
-//        tableView
+//       // 📌 tableView
 //            .rx
 //            .modelSelected(String.self) // -> 값 가져 오기 (타입 일치해야)
 //            //.itemSelected // -> 인덱스 가져 오기
@@ -82,11 +86,14 @@ final class BoxOfficeViewController: UIViewController {
 //            }
 //            .disposed(by: disposeBag)
 
-//      // Observable.zip
+//      // 📌 Observable.zip
 //      // 값과 인덱스 둘 다 가져 오기
-        Observable.zip(tableView.rx.modelSelected(String.self), tableView.rx.itemSelected)
+//      // modelSelected의 데이터 맞추기
+        Observable.zip(tableView.rx.modelSelected(DailyBoxOfficeList.self), tableView.rx.itemSelected)
+            .map { $0.0.movieNm }
+            // 튜플 - (ControlEvent<DailyBoxOfficeList>.Element, ControlEvent<IndexPath>.Element)
+            // 0번 인덱스 - ControlEvent<DailyBoxOfficeList>.Element
             .subscribe(with: self) { owner, value in
-                print(value.0, value.1)
                 
                 ///1. do-try-catch or try!
                 ///2. subject
@@ -99,9 +106,12 @@ final class BoxOfficeViewController: UIViewController {
 //                    print("ERROR")
 //                }
 //                owner.recent.onNext([value.0]) // Subject를 통한 옵저버블의 이벤트 전달
-
+                
+                var data = owner.recent.value
+                
                 ///3. relay
-                var data = owner.recent.value + [value.0]
+                // 중복되지 않을 경우 컬렉션뷰에 추가
+                if !owner.recent.value.contains(value) { data.append(value) }
                 
                 owner.recent.accept(data)
             }
