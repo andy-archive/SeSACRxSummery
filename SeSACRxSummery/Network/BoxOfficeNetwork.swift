@@ -1,19 +1,14 @@
 //
-//  Network.swift
+//  BoxOfficeNetwork.swift
 //  SeSACRxSummery
 //
 //  Created by jack on 2023/11/07.
 //
 
 import Foundation
+
 import RxSwift
 import RxCocoa
-
-enum APIError: Error {
-    case invalidURL
-    case unknownResponse
-    case statusError
-}
 
 class BoxOfficeNetwork {
     

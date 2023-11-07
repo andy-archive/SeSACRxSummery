@@ -19,10 +19,12 @@
 		04A4FD462AF8CDCF006055FA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04A4FD452AF8CDCF006055FA /* SnapKit */; };
 		04A4FD492AF8CDEE006055FA /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 04A4FD482AF8CDEE006055FA /* RxCocoa */; };
 		04A4FD4B2AF8CDEE006055FA /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 04A4FD4A2AF8CDEE006055FA /* RxSwift */; };
-		04A4FD4F2AF9B597006055FA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4FD4E2AF9B597006055FA /* Network.swift */; };
+		04A4FD4F2AF9B597006055FA /* BoxOfficeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4FD4E2AF9B597006055FA /* BoxOfficeNetwork.swift */; };
 		04A4FD512AF9B5C1006055FA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4FD502AF9B5C1006055FA /* Model.swift */; };
 		04A4FD532AF9B5ED006055FA /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4FD522AF9B5ED006055FA /* MovieCollectionViewCell.swift */; };
 		388D00642AF9C52700786545 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 388D00632AF9C52700786545 /* .gitignore */; };
+		388D006B2AF9C6B800786545 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D006A2AF9C6B800786545 /* APIError.swift */; };
+		388D006D2AF9C6E200786545 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D006C2AF9C6E200786545 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,10 +58,12 @@
 		04A4FD312AF8CD54006055FA /* SeSACRxSummeryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeSACRxSummeryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A4FD352AF8CD54006055FA /* SeSACRxSummeryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACRxSummeryUITests.swift; sourceTree = "<group>"; };
 		04A4FD372AF8CD54006055FA /* SeSACRxSummeryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACRxSummeryUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		04A4FD4E2AF9B597006055FA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		04A4FD4E2AF9B597006055FA /* BoxOfficeNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeNetwork.swift; sourceTree = "<group>"; };
 		04A4FD502AF9B5C1006055FA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		04A4FD522AF9B5ED006055FA /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		388D00632AF9C52700786545 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		388D006A2AF9C6B800786545 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		388D006C2AF9C6E200786545 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +176,9 @@
 		388D00682AF9C5D700786545 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				04A4FD4E2AF9B597006055FA /* Network.swift */,
+				388D006A2AF9C6B800786545 /* APIError.swift */,
+				04A4FD4E2AF9B597006055FA /* BoxOfficeNetwork.swift */,
+				388D006C2AF9C6E200786545 /* APIKey.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -326,12 +332,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04A4FD4F2AF9B597006055FA /* Network.swift in Sources */,
+				04A4FD4F2AF9B597006055FA /* BoxOfficeNetwork.swift in Sources */,
 				04A4FD192AF8CD54006055FA /* BoxOfficeViewController.swift in Sources */,
+				388D006D2AF9C6E200786545 /* APIKey.swift in Sources */,
 				04A4FD152AF8CD54006055FA /* AppDelegate.swift in Sources */,
 				04A4FD512AF9B5C1006055FA /* Model.swift in Sources */,
 				04A4FD532AF9B5ED006055FA /* MovieCollectionViewCell.swift in Sources */,
 				04A4FD172AF8CD54006055FA /* SceneDelegate.swift in Sources */,
+				388D006B2AF9C6B800786545 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
