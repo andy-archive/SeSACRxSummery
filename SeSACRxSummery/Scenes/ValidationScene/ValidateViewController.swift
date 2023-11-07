@@ -20,8 +20,6 @@ final class ValidateViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private let validText = BehaviorRelay(value: "닉네임은 8자 이상입니다")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,37 +28,31 @@ final class ValidateViewController: UIViewController {
     
     ///DATE: 231107
     private func bind() {
-        viewModel.validText
-            .asDriver()
+        
+        let input = ValidateViewModel.Input(text: nameTextField.rx.text, tap: nextButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output.text
             .drive(validationLabel.rx.text)
             .disposed(by: disposeBag)
         
-        // UITextField에 8글자 이상 시
-        // UILabel 숨기고 UIButton 활성화
-        
-        ///MARK: JACK
-        let validation = nameTextField.rx.text.orEmpty
-            .map { $0.count >= 8 }
-        
-        validation
+        output.validation
             .bind(to: nextButton.rx.isEnabled, validationLabel.rx.isHidden)
             .disposed(by: disposeBag)
         
-        validation
+        output.validation
             .bind(with: self) { owner, value in
                 let color: UIColor = value ? .systemRed : .lightGray
                 owner.nextButton.backgroundColor = color
             }
             .disposed(by: disposeBag)
         
-        nextButton.rx.tap
+        output.tap
             .bind(with: self) { owner, _ in
                 print("nextButton CLICKED")
             }
             .disposed(by: disposeBag)
     }
-    
-
 }
 
 /*
