@@ -46,8 +46,21 @@ final class BoxOfficeViewController: UIViewController {
     
     private func bind() {
         
+        /*
+         🛞 items에서 .drive()를 못 쓰는 이유?
+         -> drive는 에러 핸들링을 하지 못함
+         -> 그에 반해 items인 Subject은 error를 포함한 next, complete를 받을 수 있음
+         -> 예외 처리를 대응해야 함
+            -> Subject는 asDriver 이용
+         
+         🛞 recent에 .drive()를 사용가능한 이유?
+         -> relay라서 accept만 가능
+            -> Relay는 .drive
+         */
+        
         // 📌 UITableView
         items
+//            .asDriver(onErrorJustReturn: <#T##[DailyBoxOfficeList]#>)
             .bind(to: tableView.rx.items(cellIdentifier: "MovieCell", cellType: UITableViewCell.self)) { (row, element, cell) in
                 cell.textLabel?.text = "\(element.movieNm) | \(element.openDt)"
             }
@@ -55,7 +68,9 @@ final class BoxOfficeViewController: UIViewController {
         
         // 📌 UICollectionView
         recent
-            .bind(to: collectionView.rx.items(cellIdentifier: MovieCollectionViewCell.identifier, cellType: MovieCollectionViewCell.self)) {
+            .asDriver() // 🛞 Driver<[String]> -> bind 인식 못함
+            // 🛞 .bind(to: ) -> .drive()
+            .drive(collectionView.rx.items(cellIdentifier: MovieCollectionViewCell.identifier, cellType: MovieCollectionViewCell.self)) {
                 (row, element, cell) in
                 cell.label.text = "\(element)"
             }
