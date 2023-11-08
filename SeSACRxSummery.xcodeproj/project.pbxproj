@@ -28,6 +28,8 @@
 		38DC71482AFA00F00031C9C4 /* ValidateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC71472AFA00F00031C9C4 /* ValidateViewController.swift */; };
 		38DC714B2AFA05730031C9C4 /* ValidateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC714A2AFA05730031C9C4 /* ValidateViewModel.swift */; };
 		38DC714D2AFA1ACB0031C9C4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38DC714C2AFA1ACB0031C9C4 /* README.md */; };
+		38DC71512AFB129C0031C9C4 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 38DC71502AFB129C0031C9C4 /* RxDataSources */; };
+		38DC71542AFB12EB0031C9C4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC71532AFB12EB0031C9C4 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,7 @@
 		38DC71472AFA00F00031C9C4 /* ValidateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateViewController.swift; sourceTree = "<group>"; };
 		38DC714A2AFA05730031C9C4 /* ValidateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateViewModel.swift; sourceTree = "<group>"; };
 		38DC714C2AFA1ACB0031C9C4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		38DC71532AFB12EB0031C9C4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A4FD4B2AF8CDEE006055FA /* RxSwift in Frameworks */,
+				38DC71512AFB129C0031C9C4 /* RxDataSources in Frameworks */,
 				04A4FD492AF8CDEE006055FA /* RxCocoa in Frameworks */,
 				04A4FD462AF8CDCF006055FA /* SnapKit in Frameworks */,
 			);
@@ -163,6 +167,7 @@
 		388D00662AF9C54D00786545 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				38DC71522AFB12A30031C9C4 /* ExampleRxDataSources */,
 				38DC714E2AFA2C260031C9C4 /* BoxOfficeScene */,
 				38DC71492AFA05630031C9C4 /* ValidationScene */,
 			);
@@ -216,6 +221,14 @@
 			path = BoxOfficeScene;
 			sourceTree = "<group>";
 		};
+		38DC71522AFB12A30031C9C4 /* ExampleRxDataSources */ = {
+			isa = PBXGroup;
+			children = (
+				38DC71532AFB12EB0031C9C4 /* ListViewController.swift */,
+			);
+			path = ExampleRxDataSources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -236,6 +249,7 @@
 				04A4FD452AF8CDCF006055FA /* SnapKit */,
 				04A4FD482AF8CDEE006055FA /* RxCocoa */,
 				04A4FD4A2AF8CDEE006055FA /* RxSwift */,
+				38DC71502AFB129C0031C9C4 /* RxDataSources */,
 			);
 			productName = SeSACRxSummery;
 			productReference = 04A4FD112AF8CD54006055FA /* SeSACRxSummery.app */;
@@ -312,6 +326,7 @@
 			packageReferences = (
 				04A4FD442AF8CDCF006055FA /* XCRemoteSwiftPackageReference "SnapKit" */,
 				04A4FD472AF8CDEE006055FA /* XCRemoteSwiftPackageReference "RxSwift" */,
+				38DC714F2AFB129C0031C9C4 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = 04A4FD122AF8CD54006055FA /* Products */;
 			projectDirPath = "";
@@ -363,6 +378,7 @@
 				04A4FD192AF8CD54006055FA /* BoxOfficeViewController.swift in Sources */,
 				388D006D2AF9C6E200786545 /* APIKey.swift in Sources */,
 				04A4FD152AF8CD54006055FA /* AppDelegate.swift in Sources */,
+				38DC71542AFB12EB0031C9C4 /* ListViewController.swift in Sources */,
 				04A4FD512AF9B5C1006055FA /* Model.swift in Sources */,
 				04A4FD532AF9B5ED006055FA /* MovieCollectionViewCell.swift in Sources */,
 				04A4FD172AF8CD54006055FA /* SceneDelegate.swift in Sources */,
@@ -736,6 +752,14 @@
 				minimumVersion = 6.6.0;
 			};
 		};
+		38DC714F2AFB129C0031C9C4 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -753,6 +777,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04A4FD472AF8CDEE006055FA /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		38DC71502AFB129C0031C9C4 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38DC714F2AFB129C0031C9C4 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
