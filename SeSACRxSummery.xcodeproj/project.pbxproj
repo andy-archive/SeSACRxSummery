@@ -24,6 +24,7 @@
 		04A4FD532AF9B5ED006055FA /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4FD522AF9B5ED006055FA /* MovieCollectionViewCell.swift */; };
 		382017792AFB22F100685764 /* BoxOfficeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382017782AFB22F100685764 /* BoxOfficeViewModel.swift */; };
 		3820177D2AFB347E00685764 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3820177C2AFB347E00685764 /* ViewModelType.swift */; };
+		382017852AFC886300685764 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 382017842AFC886300685764 /* Moya */; };
 		388D00642AF9C52700786545 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 388D00632AF9C52700786545 /* .gitignore */; };
 		388D006B2AF9C6B800786545 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D006A2AF9C6B800786545 /* APIError.swift */; };
 		388D006D2AF9C6E200786545 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D006C2AF9C6E200786545 /* APIKey.swift */; };
@@ -87,6 +88,7 @@
 				04A4FD4B2AF8CDEE006055FA /* RxSwift in Frameworks */,
 				38DC71512AFB129C0031C9C4 /* RxDataSources in Frameworks */,
 				04A4FD492AF8CDEE006055FA /* RxCocoa in Frameworks */,
+				382017852AFC886300685764 /* Moya in Frameworks */,
 				04A4FD462AF8CDCF006055FA /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +274,7 @@
 				04A4FD482AF8CDEE006055FA /* RxCocoa */,
 				04A4FD4A2AF8CDEE006055FA /* RxSwift */,
 				38DC71502AFB129C0031C9C4 /* RxDataSources */,
+				382017842AFC886300685764 /* Moya */,
 			);
 			productName = SeSACRxSummery;
 			productReference = 04A4FD112AF8CD54006055FA /* SeSACRxSummery.app */;
@@ -349,6 +352,7 @@
 				04A4FD442AF8CDCF006055FA /* XCRemoteSwiftPackageReference "SnapKit" */,
 				04A4FD472AF8CDEE006055FA /* XCRemoteSwiftPackageReference "RxSwift" */,
 				38DC714F2AFB129C0031C9C4 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				382017832AFC886300685764 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 04A4FD122AF8CD54006055FA /* Products */;
 			projectDirPath = "";
@@ -776,6 +780,14 @@
 				minimumVersion = 6.6.0;
 			};
 		};
+		382017832AFC886300685764 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
 		38DC714F2AFB129C0031C9C4 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
@@ -801,6 +813,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04A4FD472AF8CDEE006055FA /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		382017842AFC886300685764 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 382017832AFC886300685764 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 		38DC71502AFB129C0031C9C4 /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;
