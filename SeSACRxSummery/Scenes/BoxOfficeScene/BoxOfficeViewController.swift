@@ -27,6 +27,8 @@ final class BoxOfficeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        APIManager.shared.signUp(email: "apimanager", password: "api123", nick: "apiman")
+        
         configure()
         bind()
     }
